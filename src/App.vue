@@ -1,10 +1,21 @@
 <script setup>
+import Modal from './components/Modal.vue'
 import { ref, reactive, computed, watch } from 'vue'
 
+const showModal = ref(false)
 </script>
 
 <template>
-  
+  <button id="show-modal" @click="showModal = true">Show Modal</button>
+
+  <Teleport to="body">
+    <!-- use the modal component, pass in the prop -->
+    <modal :show="showModal" @close="showModal = false">
+      <template #header>
+        <h3>Custom Header</h3>
+      </template>
+    </modal>
+  </Teleport>
 </template>
 
 <style>
